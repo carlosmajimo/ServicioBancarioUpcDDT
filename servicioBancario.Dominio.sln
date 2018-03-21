@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "servicioBancario.Dominio", "servicioBancario.Dominio\servicioBancario.Dominio.csproj", "{269E03DD-7214-4B22-BE62-CAE69D4F3A8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "servicioBancario.Dominio.test", "servicioBancario.Dominio.test\servicioBancario.Dominio.test.csproj", "{AC131E41-1E4F-4C76-AF64-C2C92F9DF0D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{269E03DD-7214-4B22-BE62-CAE69D4F3A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{269E03DD-7214-4B22-BE62-CAE69D4F3A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{269E03DD-7214-4B22-BE62-CAE69D4F3A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{269E03DD-7214-4B22-BE62-CAE69D4F3A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC131E41-1E4F-4C76-AF64-C2C92F9DF0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC131E41-1E4F-4C76-AF64-C2C92F9DF0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC131E41-1E4F-4C76-AF64-C2C92F9DF0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC131E41-1E4F-4C76-AF64-C2C92F9DF0D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
