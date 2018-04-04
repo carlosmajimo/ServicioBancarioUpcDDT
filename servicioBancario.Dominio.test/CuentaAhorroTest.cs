@@ -47,7 +47,7 @@ namespace servicioBancario.Dominio.test
 
             //Entonces:
             //El sistema registrará la consignación
-            //AND presentará el mensaje.“Su Nuevo Saldo es de $50.000,00 pesos m/c”.
+            //AND presentará el mensaje.“Su Nuevo Saldo es de $50,000.00 pesos m/c”.
 
 
             //Dado - Preparar (A)
@@ -61,7 +61,7 @@ namespace servicioBancario.Dominio.test
             string mensajeRespuesta = cuentaAhorro.Consignar(valorConsignar, fechaConsignacion, ciudad);
 
             //Entonces - Afirmar (A)
-            Assert.AreEqual("Su Nuevo Saldo es de $50000 pesos m/c", mensajeRespuesta);
+            Assert.AreEqual("Su Nuevo Saldo es de $50,000.00 pesos m/c", mensajeRespuesta);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace servicioBancario.Dominio.test
             //Entonces:
             //El sistema no registrará la consignación
             //AND presentará el mensaje.
-            //“El valor mínimo de la primera consignación debe ser de $50.000 mil pesos. Su nuevo saldo es $0 pesos”.
+            //“El valor mínimo de la primera consignación debe ser de $50,000.00 mil pesos”.
 
 
             //Dado - Preparar (A)
@@ -91,7 +91,7 @@ namespace servicioBancario.Dominio.test
             string mensajeRespuesta = cuentaAhorro.Consignar(valorConsignar, fechaConsignacion, ciudad);
 
             //Entonces - Afirmar (A)
-            Assert.AreEqual("El valor minimo de la primera consignacion debe ser de $50.000 mil pesos. Su nuevo saldo es $0 pesos", mensajeRespuesta);
+            Assert.AreEqual("El valor minimo de la primera consignacion debe ser de $50,000.00 mil pesos.", mensajeRespuesta);
         }
 
         [TestMethod]
@@ -107,7 +107,7 @@ namespace servicioBancario.Dominio.test
             //Entonces:
             //El sistema registrará la consignación
             //AND presentará el mensaje.
-            //"Su Nuevo Saldo es de 79950 pesos m/c"
+            //"Su Nuevo Saldo es de 79,950.00 pesos m/c"
 
 
             //Dado - Preparar (A)
@@ -121,7 +121,7 @@ namespace servicioBancario.Dominio.test
             string mensajeRespuesta = cuentaAhorro.Consignar(valorConsignar, fechaConsignacion, ciudad);
 
             //Entonces - Afirmar (A)
-            Assert.AreEqual("Su Nuevo Saldo es de $79950 pesos m/c", mensajeRespuesta);
+            Assert.AreEqual("Su Nuevo Saldo es de $79,950.00 pesos m/c", mensajeRespuesta);
         }
 
         [TestMethod]
@@ -137,7 +137,7 @@ namespace servicioBancario.Dominio.test
             //Entonces:
             //El sistema registrará la consignación
             //AND presentará el mensaje.
-            //"Su Nuevo Saldo es de 69950 pesos m/c"”.
+            //"Su Nuevo Saldo es de 69,950.00 pesos m/c"”.
 
 
             //Dado - Preparar (A)
@@ -151,7 +151,7 @@ namespace servicioBancario.Dominio.test
             string mensajeRespuesta = cuentaAhorro.Consignar(valorConsignar, fechaConsignacion, ciudad);
 
             //Entonces - Afirmar (A)
-            Assert.AreEqual("Su Nuevo Saldo es de $69950 pesos m/c", mensajeRespuesta);
+            Assert.AreEqual("Su Nuevo Saldo es de $69,950.00 pesos m/c", mensajeRespuesta);
         }
 
         [TestMethod]
@@ -197,12 +197,13 @@ namespace servicioBancario.Dominio.test
             //Entonces:
             //El sistema no registrará el retiro.
             //AND presentará el mensaje. "El valor a retirar es incorrecto, el saldo minimo en 
-            //cuenta es de $20000 pesos m/c".
+            //cuenta es de $20,000.00 pesos m/c".
 
             //Dado - Preparar (A)
             CuentaAhorros cuentaAhorro = new CuentaAhorros("10001", "Cuenta Ejemplo", 40000);
 
             decimal valorRetirar = 30000;
+            decimal valorEsperado = 40000;
             var fechaRetiro = new DateTime(2018, 02, 1);
             var ciudad = "Valledupar";
 
@@ -210,7 +211,8 @@ namespace servicioBancario.Dominio.test
             string mensajeRespuesta = cuentaAhorro.Retirar(valorRetirar, fechaRetiro, ciudad);
 
             //Entonces - Afirmar (A)
-            Assert.AreEqual("El valor a retirar es incorrecto, el saldo minimo en cuenta es de $20000 pesos m/c", mensajeRespuesta);
+            Assert.AreEqual("El valor a retirar es incorrecto, el saldo minimo en cuenta es de $20,000.00 pesos m/c", mensajeRespuesta);
+            Assert.AreEqual(cuentaAhorro.GetSaldo(), valorEsperado);
         }
 
         [TestMethod]
@@ -226,11 +228,11 @@ namespace servicioBancario.Dominio.test
 
             //Entonces:
             //El sistema registrará el retiro restando $30 mil pesos al saldo.
-            //AND presentará el mensaje. "Su Nuevo Saldo es de $30000 pesos m/c".
+            //AND presentará el mensaje. "Su Nuevo Saldo es de $30,000.00 pesos m/c".
 
             //Dado - Preparar (A)
             CuentaAhorros cuentaAhorro = new CuentaAhorros("10001", "Cuenta Ejemplo", 60000);
-            cuentaAhorro.retiroMes = 2;
+            cuentaAhorro.RetiroMes = 2;
 
             decimal valorRetirar = 30000;
             var fechaRetiro = new DateTime(2018, 02, 1);
@@ -240,7 +242,7 @@ namespace servicioBancario.Dominio.test
             string mensajeRespuesta = cuentaAhorro.Retirar(valorRetirar, fechaRetiro, ciudad);
 
             //Entonces - Afirmar (A)
-            Assert.AreEqual("Su Nuevo Saldo es de $30000 pesos m/c", mensajeRespuesta);
+            Assert.AreEqual("Su Nuevo Saldo es de $30,000.00 pesos m/c", mensajeRespuesta);
         }
 
         [TestMethod]
@@ -256,11 +258,11 @@ namespace servicioBancario.Dominio.test
 
             //Entonces:
             //El sistema registrará el retiro restando $35 mil pesos al saldo.
-            //AND presentará el mensaje. "Su Nuevo Saldo es de $25000 pesos m/c"..
+            //AND presentará el mensaje. "Su Nuevo Saldo es de $25,000.00 pesos m/c".
 
             //Dado - Preparar (A)
             CuentaAhorros cuentaAhorro = new CuentaAhorros("10001", "Cuenta Ejemplo", 60000);
-            cuentaAhorro.retiroMes = 3;
+            cuentaAhorro.RetiroMes = 3;
 
             decimal valorRetirar = 30000;
             var fechaRetiro = new DateTime(2018, 02, 1);
@@ -270,7 +272,7 @@ namespace servicioBancario.Dominio.test
             string mensajeRespuesta = cuentaAhorro.Retirar(valorRetirar, fechaRetiro, ciudad);
 
             //Entonces - Afirmar (A)
-            Assert.AreEqual("Su Nuevo Saldo es de $25000 pesos m/c", mensajeRespuesta);
+            Assert.AreEqual("Su Nuevo Saldo es de $25,000.00 pesos m/c", mensajeRespuesta);
         }
 
     }
