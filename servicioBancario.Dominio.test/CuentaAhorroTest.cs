@@ -216,6 +216,38 @@ namespace servicioBancario.Dominio.test
         }
 
         [TestMethod]
+        public void TestValorRetiroMayorDelMinimoMes()
+        {
+            //Dado:
+            //El cliente tiene una cuenta de ahorro
+            //Número 10001, Nombre "Cuenta ejemplo", Saldo de $40 mil pesos, tiene 3 retiros en el mes.
+
+
+            //Cuando:
+            //Va a retirar $20 mil pesos
+
+            //Entonces:
+            //El sistema no registrará el retiro.
+            //AND presentará el mensaje. "El valor a retirar es incorrecto, el saldo minimo en 
+            //cuenta es de $20,000.00 pesos m/c".
+
+            //Dado - Preparar (A)
+            CuentaAhorros cuentaAhorro = new CuentaAhorros("10001", "Cuenta Ejemplo", "Valledupar", 40000, 3);
+
+            decimal valorRetirar = 30000;
+            decimal valorEsperado = 40000;
+            var fechaRetiro = new DateTime(2018, 02, 1);
+            var ciudad = "Valledupar";
+
+            //Cuando - Actuar (A)
+            string mensajeRespuesta = cuentaAhorro.Retirar(valorRetirar, fechaRetiro, ciudad);
+
+            //Entonces - Afirmar (A)
+            Assert.AreEqual("El valor a retirar es incorrecto, el saldo minimo en cuenta es de $20,000.00 pesos m/c", mensajeRespuesta);
+            Assert.AreEqual(cuentaAhorro.GetSaldo(), valorEsperado);
+        }
+
+        [TestMethod]
         public void TestValorRetiroCorrectoGratuito()
         {
             //Dado:
@@ -231,8 +263,7 @@ namespace servicioBancario.Dominio.test
             //AND presentará el mensaje. "Su Nuevo Saldo es de $30,000.00 pesos m/c".
 
             //Dado - Preparar (A)
-            CuentaAhorros cuentaAhorro = new CuentaAhorros("10001", "Cuenta Ejemplo", 60000);
-            cuentaAhorro.RetiroMes = 2;
+            CuentaAhorros cuentaAhorro = new CuentaAhorros("10001", "Cuenta Ejemplo","Valledupar", 60000, 2);
 
             decimal valorRetirar = 30000;
             var fechaRetiro = new DateTime(2018, 02, 1);
@@ -261,8 +292,7 @@ namespace servicioBancario.Dominio.test
             //AND presentará el mensaje. "Su Nuevo Saldo es de $25,000.00 pesos m/c".
 
             //Dado - Preparar (A)
-            CuentaAhorros cuentaAhorro = new CuentaAhorros("10001", "Cuenta Ejemplo", 60000);
-            cuentaAhorro.RetiroMes = 3;
+            CuentaAhorros cuentaAhorro = new CuentaAhorros("10001", "Cuenta Ejemplo","Valledupar", 60000,3);
 
             decimal valorRetirar = 30000;
             var fechaRetiro = new DateTime(2018, 02, 1);

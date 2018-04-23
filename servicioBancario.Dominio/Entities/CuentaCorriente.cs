@@ -83,14 +83,16 @@ namespace servicioBancario.Dominio.Entities
                 return "El valor a retirar es incorrecto";
             }
 
-            if ( CalcularRetiro(valor) < this.Cupo*-1)
+            decimal valorRetiro = CalcularRetiro(valor);
+
+            if ( valorRetiro < this.Cupo*-1)
             {
                 return $"El valor a retirar es incorrecto, el saldo minimo en cuenta es de $-{ this.Cupo.ToString("N") } pesos m/c";
             }
 
-            if (CalcularRetiro(valor) >= this.Cupo * -1)
+            if (valorRetiro >= this.Cupo * -1)
             {
-                this.Saldo = CalcularRetiro(valor);
+                this.Saldo = valorRetiro;
                 return $"Su Nuevo Saldo es de ${ this.Saldo.ToString("N") } pesos m/c";
             }
             throw new NotImplementedException();

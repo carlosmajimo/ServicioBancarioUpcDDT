@@ -3,7 +3,15 @@ namespace servicioBancario.Dominio.Entities
 {
     public class CuentaAhorros: CuentaBancaria
     {
-        public int RetiroMes { get; set; }
+        protected int RetiroMes { get; set; }
+
+        public CuentaAhorros(string numero, string nombre)
+        {
+            this.Numero = numero;
+            this.Nombre = nombre;
+            this.Ciudad = "Valledupar";
+            this.Saldo = 0;
+        }
 
         public CuentaAhorros(string numero, string nombre, decimal saldo)
         {
@@ -18,6 +26,15 @@ namespace servicioBancario.Dominio.Entities
             this.Nombre = nombre;
             this.Ciudad = ciudad;
             this.Saldo = saldo;
+        }
+
+        public CuentaAhorros(string numero, string nombre, string ciudad, decimal saldo, int retiroMes)
+        {
+            this.Numero = numero;
+            this.Nombre = nombre;
+            this.Ciudad = "Valledupar";
+            this.Saldo = saldo;
+            this.RetiroMes = retiroMes;
         }
 
 		public override decimal GetSaldo()
@@ -53,14 +70,16 @@ namespace servicioBancario.Dominio.Entities
                 return "El valor a retirar es incorrecto";
             }
 
-            if (CalcularRetiro(valor) < 20000)
+            decimal nuevoSaldo = CalcularRetiro(valor);
+
+            if ( nuevoSaldo < 20000)
             {
                 return "El valor a retirar es incorrecto, el saldo minimo en cuenta es de $20,000.00 pesos m/c";
             }
 
-            if (CalcularRetiro(valor) >= 20000)
+            if (nuevoSaldo >= 20000)
             {
-                this.Saldo = CalcularRetiro(valor);
+                this.Saldo = nuevoSaldo;
                 this.RetiroMes += 1;
                 return $"Su Nuevo Saldo es de ${ this.Saldo.ToString("N") } pesos m/c";
             }

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace servicioBancario.Dominio.Entities
+namespace servicioBancario.Dominio.Contracts
 {
     public class TarjetaCredito
     {
